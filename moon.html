@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پەیمانگای وەرزشی بەردەرەش</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Vazir', 'Arial', sans-serif;
+        font-weight: bold;
+        background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Header */
+    header {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        border: 3px solid #d4af37;
+    }
+
+    .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .site-title {
+        color: #d4af37;
+        font-size: 2.2em;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .register-btn {
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        color: #1a0f08;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        transition: all 0.3s;
+    }
+
+    .register-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+    }
+
+    /* Navigation Menu */
+    .nav-menu {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 15px 0;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .nav-btn {
+        background: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        border: 2px solid #d4af37;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.15em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: #d4af37;
+        color: #1a0f08;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #2c1810, #1a0f08);
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 95%;
+        width: 1000px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9);
+        border: 2px solid #d4af37;
+        position: relative;
+    }
+
+    .modal-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .modal-header h2 {
+        color: #d4af37;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 2.5em;
+        cursor: pointer;
+        color: #d4af37;
+        background: none;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+
+    .close-btn:hover {
+        background: rgba(212, 175, 55, 0.2);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #d4af37;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #d4af37;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1.1em;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+        outline: none;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    .submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        color: #1a0f08;
+        padding: 18px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.3em;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.9;
+    }
+
+    /* Tables */
+    .table-container {
+        overflow-x: auto;
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+
+    th, td {
+        padding: 18px;
+        text-align: center;
+        border: 2px solid #d4af37;
+        font-size: 1.15em;
+    }
+
+    th {
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        color: #1a0f08;
+        font-weight: bold;
+        font-size: 1.25em;
+    }
+
+    td {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    tr:hover td {
+        background: rgba(212, 175, 55, 0.2);
+    }
+
+    .edit-btn, .delete-btn, .add-btn {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 0 5px;
+        font-size: 1em;
+    }
+
+    .edit-btn {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .delete-btn {
+        background: #f44336;
+        color: white;
+    }
+
+    .add-btn {
+        background: #2196F3;
+        color: white;
+        padding: 12px 30px;
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+
+    /* Groups Grid */
+    .groups-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .group-card {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.1));
+        border: 2px solid #d4af37;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .group-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    }
+
+    .group-number {
+        font-size: 3.5em;
+        color: #d4af37;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .group-label {
+        font-size: 1.3em;
+    }
+
+    .user-role-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        margin: 10px 0;
+        font-size: 1.1em;
+    }
+
+    .teacher-badge {
+        background: #4CAF50;
+    }
+
+    .student-badge {
+        background: #2196F3;
+    }
+
+    /* Footer */
+    footer {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px 20px 20px;
+        margin-top: 50px;
+        border-top: 2px solid #d4af37;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .developer {
+        color: #d4af37;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .social-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        max-width: 600px;
+        margin: 0 auto 30px;
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+        border: 2px solid;
+        font-size: 0.95em;
+    }
+
+    .facebook { background: #1877f2; color: white; border-color: #1877f2; }
+    .facebook:before { content: "📘 "; }
+    
+    .snapchat { background: #fffc00; color: #000; border-color: #fffc00; }
+    .snapchat:before { content: "👻 "; }
+    
+    .tiktok { background: #000; color: #fff; border-color: #00f2ea; }
+    .tiktok:before { content: "🎵 "; }
+    
+    .telegram { background: #0088cc; color: white; border-color: #0088cc; }
+    .telegram:before { content: "✈️ "; }
+    
+    .whatsapp { background: #25d366; color: white; border-color: #25d366; }
+    .whatsapp:before { content: "💬 "; }
+    
+    .viber { background: #7360f2; color: white; border-color: #7360f2; }
+    .viber:before { content: "📞 "; }
+
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Chat Styles */
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .chat-message {
+        max-width: 70%;
+        padding: 12px 18px;
+        border-radius: 15px;
+        word-wrap: break-word;
+        animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-message.sent {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        color: #1a0f08;
+        border-bottom-right-radius: 5px;
+    }
+
+    .chat-message.received {
+        align-self: flex-start;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-bottom-left-radius: 5px;
+    }
+
+    .message-author {
+        font-size: 0.85em;
+        font-weight: bold;
+        margin-bottom: 5px;
+        opacity: 0.8;
+    }
+
+    .message-text {
+        font-size: 1.1em;
+        line-height: 1.5;
+    }
+
+    .message-time {
+        font-size: 0.75em;
+        opacity: 0.7;
+        margin-top: 5px;
+        text-align: left;
+    }
+
+    .chat-input-container {
+        display: flex;
+        gap: 10px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-top: 2px solid #d4af37;
+    }
+
+    .chat-input {
+        flex: 1;
+        padding: 15px;
+        border: 2px solid #d4af37;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1.1em;
+        font-family: inherit;
+    }
+
+    .chat-input:focus {
+        outline: none;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    .chat-send-btn {
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        color: #1a0f08;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: all 0.3s;
+    }
+
+    .chat-send-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Notification Badge */
+    .notification-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8em;
+        font-weight: bold;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .nav-btn {
+        background: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        border: 2px solid #d4af37;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.15em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    /* Online Users Counter */
+    .online-counter {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 25px;
+        box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        font-weight: bold;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.1em;
+    }
+
+    .online-dot {
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    /* Welcome Banner */
+    .welcome-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(255, 215, 0, 0.9));
+        color: #1a0f08;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+        from { transform: translateY(-100%); }
+        to { transform: translateY(0); }
+    }
+
+    /* Quick Stats */
+    .quick-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .stat-box {
+        background: rgba(212, 175, 55, 0.15);
+        border: 2px solid #d4af37;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .stat-number {
+        font-size: 2.5em;
+        color: #d4af37;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        font-size: 1.1em;
+        color: #ffd700;
+    }
+
+    /* Floating Action Button */
+    .fab {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #d4af37, #ffd700);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8em;
+        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 1001;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .fab:hover {
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
+    }
+
+    /* New Message Indicator */
+    .new-message-indicator {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        background: #ff4444;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        animation: slideInRight 0.5s ease-out;
+        box-shadow: 0 5px 20px rgba(255, 68, 68, 0.5);
+        z-index: 1002;
+        display: none;
+    }
+
+    @keyframes slideInRight {
+        from { transform: translateX(100%) translateY(-50%); }
+        to { transform: translateX(0) translateY(-50%); }
+    }
+
+    .new-message-indicator.show {
+        display: block;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 15px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #d4af37, #ffd700);
+        transition: width 0.3s ease;
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .site-title {
+            font-size: 1.5em;
+        }
+        
+        table {
+            font-size: 0.9em;
+        }
+        
+        th, td {
+            padding: 10px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/yWVdLNG9/IMG-20250112-115621-269.jpg" alt="لۆگۆی پەیمانگا">
+                </div>
+                <h1 class="site-title">پەیمانگای وەرزشی بەردەرەش</h1>
+            </div>
+            <button class="register-btn" onclick="openRegisterModal()">خۆ تۆمارکردن</button>
+        </div>
+    </header>
+
+```
+<!-- Welcome Banner -->
+<div class="welcome-banner" id="welcomeBanner" style="display: none;">
+    🎉 بەخێربێیت بۆ پەیمانگای وەرزشی بەردەرەش - قۆناغی چوارەم 🎉
+</div>
+
+<!-- Navigation Menu -->
+<nav class="nav-menu">
+    <div class="nav-container">
+        <button class="nav-btn" onclick="openScheduleModal()">
+            📅 خشتەی وانەکان
+        </button>
+        <button class="nav-btn" onclick="openGroupsModal()">
+            👥 گروپەکان
+        </button>
+        <button class="nav-btn" onclick="openChatModal()" id="chatNavBtn" style="position: relative;">
+            💬 گفتوگۆ
+            <span class="notification-badge" id="chatBadge" style="display: none;">0</span>
+        </button>
+        <button class="nav-btn" onclick="openTeachersModal()">
+            👨‍🏫 مامۆستاکان
+        </button>
+        <button class="nav-btn" onclick="openNotesModal()">
+            📌 ڕێنماییەکان
+        </button>
+    </div>
+</nav>
+
+<!-- Online Counter -->
+<div class="online-counter" id="onlineCounter">
+    <span class="online-dot"></span>
+    <span id="onlineCount">0</span> بەکارهێنەری ئۆنلاین
+</div>
+
+<!-- Floating Action Button -->
+<div class="fab" onclick="openChatModal()" title="گفتوگۆی خێرا">
+    💬
+</div>
+
+<!-- New Message Indicator -->
+<div class="new-message-indicator" id="newMessageIndicator" onclick="openChatModal()">
+    📨 پەیامی نوێت هەیە!
+</div>
+
+<!-- Registration Modal -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('registerModal')">×</button>
+        <div class="modal-header">
+            <h2>خۆ تۆمارکردن</h2>
+            <p style="font-size: 1.2em;">تکایە زانیاریەکانت بنووسە</p>
+        </div>
+        <form onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label>جۆری بەکارهێنەر</label>
+                <select id="userType" required>
+                    <option value="">هەڵبژێرە...</option>
+                    <option value="teacher">مامۆستا</option>
+                    <option value="student">خوێندکار</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>ناوی تەواو</label>
+                <input type="text" id="fullName" placeholder="ناوی تەواوت..." required>
+            </div>
+            <div class="form-group">
+                <label>جیمەیڵ</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>ژمارەی مۆبایل</label>
+                <input type="tel" id="phone" placeholder="07501234567" required>
+            </div>
+            <div class="form-group">
+                <label>پاسۆرد</label>
+                <input type="password" id="password" placeholder="********" required>
+            </div>
+            <button type="submit" class="submit-btn">تۆمارکردن</button>
+        </form>
+    </div>
+</div>
+
+<!-- Schedule Modal -->
+<div class="modal" id="scheduleModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('scheduleModal')">×</button>
+        <div class="modal-header">
+            <h2>📅 خشتەی وانەکان</h2>
+            
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-box">
+                    <span class="stat-number" id="totalClassesCount">21</span>
+                    <span class="stat-label">کۆی وانەکان</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="participantCount">0</span>
+                    <span class="stat-label">بەژداربوان</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">مامۆستا</span>
+                </div>
+            </div>
+            
+            <div id="teacherControls" style="display: none;">
+                <button class="add-btn" onclick="addScheduleRow()">➕ زیادکردنی وانە</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table id="scheduleTable">
+                <thead>
+                    <tr>
+                        <th>ڕۆژ</th>
+                        <th>کاتی دەستپێکردن</th>
+                        <th>کاتی کۆتایی</th>
+                        <th>وانە</th>
+                        <th>مامۆستا</th>
+                        <th>گروپ</th>
+                        <th id="scheduleActions" style="display: none;">کردارەکان</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    <tr>
+                        <td>شەممە</td>
+                        <td>8:00 ن</td>
+                        <td>10:00 ن</td>
+                        <td>فیتنس</td>
+                        <td>مامۆستا ئەحمەد محەمەد</td>
+                        <td>گروپی 1</td>
+                    </tr>
+                    <tr>
+                        <td>یەکشەممە</td>
+                        <td>10:00 ن</td>
+                        <td>12:00 ن</td>
+                        <td>بۆکس</td>
+                        <td>مامۆستا کەریم عەلی</td>
+                        <td>گروپی 2</td>
+                    </tr>
+                    <tr>
+                        <td>دووشەممە</td>
+                        <td>2:00 د</td>
+                        <td>4:00 د</td>
+                        <td>یۆگا</td>
+                        <td>مامۆستا سارا ئیبراهیم</td>
+                        <td>گروپی 3</td>
+                    </tr>
+                    <tr>
+                        <td>سێشەممە</td>
+                        <td>8:00 ن</td>
+                        <td>10:00 ن</td>
+                        <td>کاراتێ</td>
+                        <td>مامۆستا ڕەشید حەسەن</td>
+                        <td>گروپی 4</td>
+                    </tr>
+                    <tr>
+                        <td>چوارشەممە</td>
+                        <td>4:00 د</td>
+                        <td>6:00 د</td>
+                        <td>کراس فیت</td>
+                        <td>مامۆستا ئەحمەد محەمەد</td>
+                        <td>گروپی 5</td>
+                    </tr>
+                    <tr>
+                        <td>پێنجشەممە</td>
+                        <td>9:00 ن</td>
+                        <td>11:00 ن</td>
+                        <td>پاورلیفتینگ</td>
+                        <td>مامۆستا سیروان کەمال</td>
+                        <td>گروپی 1</td>
+                    </tr>
+                    <tr>
+                        <td>هەینی</td>
+                        <td>10:00 ن</td>
+                        <td>12:00 ن</td>
+                        <td>ئایرۆبیک</td>
+                        <td>مامۆستا سارا ئیبراهیم</td>
+                        <td>گروپی 2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Groups Modal -->
+<div class="modal" id="groupsModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('groupsModal')">×</button>
+        <div class="modal-header">
+            <h2>👥 گروپەکانی خوێندکار</h2>
+            <p style="font-size: 1.3em; color: #d4af37; margin-top: 15px;">قۆناغی چوارەم</p>
+        </div>
+        <div class="groups-grid">
+            <div class="group-card" onclick="showGroupDetails(1)">
+                <div class="group-number">4</div>
+                <div class="group-label">قۆناغی چوارەم</div>
+                <p style="margin-top: 10px; color: #ffd700;">⭐ نوێنەر: هومەیل موئید</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Group Details Modal -->
+<div class="modal" id="groupDetailsModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('groupDetailsModal')">×</button>
+        <div class="modal-header">
+            <h2 id="groupDetailTitle">گروپی یەکەم</h2>
+            <div id="groupTeacherControls" style="display: none;">
+                <button class="add-btn" onclick="addGroupMember()">+ زیادکردنی قوتابی</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table id="groupDetailsTable">
+                <thead>
+                    <tr>
+                        <th>ژمارە</th>
+                        <th>ناوی قوتابی</th>
+                        <th>نوێنەری گروپ</th>
+                        <th id="groupActions" style="display: none;">کردارەکان</th>
+                    </tr>
+                </thead>
+                <tbody id="groupDetailsBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Modal -->
+<div class="modal" id="chatModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('chatModal')">×</button>
+        <div class="modal-header">
+            <h2>💬 گفتوگۆی قۆناغی چوارەم</h2>
+            <p style="font-size: 1.1em; color: #d4af37; margin-top: 10px;">بەشی گفتوگۆ بۆ هەموو قوتابیان</p>
+            
+            <!-- Chat Progress -->
+            <div style="margin-top: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #d4af37;">چالاکی گفتوگۆ</span>
+                    <span style="color: #ffd700;" id="messageProgress">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%; background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37); background-size: 200% 100%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="پەیامەکەت لێرە بنووسە..."
+                    onkeypress="handleChatEnter(event)"
+                >
+                <button class="chat-send-btn" onclick="sendMessage()">📤 ناردن</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Teachers, Grades, Homework, Notes Modals (Similar structure) -->
+<div class="modal" id="teachersModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('teachersModal')">×</button>
+        <div class="modal-header">
+            <h2>👨‍🏫 مامۆستاکانی پەیمانگا</h2>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ناو</th>
+                        <th>بابەتەکان</th>
+                        <th>ژمارەی تەلەفۆن</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>مامۆستا سیروان</td>
+                        <td>گۆرەپان و زانستی مەشق</td>
+                        <td>0750 111 2222</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا دلاوەر</td>
+                        <td>پێوانە و هەلسەنگاندن</td>
+                        <td>0751 333 4444</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا ئالا</td>
+                        <td>ئامار</td>
+                        <td>0752 555 6666</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا عەلی</td>
+                        <td>رێگای وانە</td>
+                        <td>0753 777 8888</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا یاعقوب</td>
+                        <td>تۆپی باسکە و تۆپی بالە</td>
+                        <td>0754 999 0000</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا عومەر</td>
+                        <td>تۆپی دەست و فێربوونی جولە</td>
+                        <td>0755 888 7777</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا سوهیب</td>
+                        <td>مەدەنی</td>
+                        <td>0756 666 5555</td>
+                    </tr>
+                    <tr>
+                        <td>مامۆستا کارگێری</td>
+                        <td>کارگێری رێکخستن</td>
+                        <td>0757 444 3333</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="gradesModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('gradesModal')">×</button>
+        <div class="modal-header">
+            <h2>📊 نمرەکان</h2>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ناوی خوێندکار</th>
+                        <th>وانە</th>
+                        <th>نمرە</th>
+                        <th>پلە</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ئەحمەد محەمەد</td>
+                        <td>فیتنس</td>
+                        <td>95</td>
+                        <td>نایاب</td>
+                    </tr>
+                    <tr>
+                        <td>سارا ئیبراهیم</td>
+                        <td>یۆگا</td>
+                        <td>88</td>
+                        <td>زۆر باش</td>
+                    </tr>
+                    <tr>
+                        <td>کەریم عەلی</td>
+                        <td>بۆکس</td>
+                        <td>92</td>
+                        <td>نایاب</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="homeworkModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('homeworkModal')">×</button>
+        <div class="modal-header">
+            <h2>📝 ئەرکی ماڵەوە</h2>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>وانە</th>
+                        <th>ئەرک</th>
+                        <th>بەرواری ڕادەست</th>
+                        <th>دۆخ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>فیتنس</td>
+                        <td>100 Push-up و 100 Sit-up</td>
+                        <td>2025/01/15</td>
+                        <td>چالاک</td>
+                    </tr>
+                    <tr>
+                        <td>بۆکس</td>
+                        <td>تەمەنکردنی تەکنیکەکان</td>
+                        <td>2025/01/18</td>
+                        <td>چالاک</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="notesModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('notesModal')">×</button>
+        <div class="modal-header">
+            <h2>📌 ڕێنمایی و تێبینیەکان</h2>
+        </div>
+        <div style="font-size: 1.2em; line-height: 2;">
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; margin: 15px 0; border-right: 4px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">⚠️ تێبینی گرنگ</h3>
+                <p>تکایە 15 خولەک پێش دەستپێکردنی وانەکان بگەن بۆ گەرمکردنەوە</p>
+            </div>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; margin: 15px 0; border-right: 4px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">🎽 جلوبەرگ</h3>
+                <p>پێویستە جلوبەرگی وەرزشی و پێڵاوی تایبەت بەکاربهێنن</p>
+            </div>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; margin: 15px 0; border-right: 4px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">💧 ئاو</h3>
+                <p>هەمیشە بوتڵێک ئاوتان لەگەڵ بێت بۆ ماندوونەبوون</p>
+            </div>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; margin: 15px 0; border-right: 4px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">📱 مۆبایل</h3>
+                <p>لە کاتی وانەکان مۆبایلەکان دەبێت لە دۆخی بێدەنگدا بن</p>
+            </div>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; margin: 15px 0; border-right: 4px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">🏆 ڕێزگرتن</h3>
+                <p>ڕێز لە مامۆستا و هاوپۆلەکانتان بگرن</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p class="developer">🌟 لەلایەن ahmadtayb دروست کراوە 🌟</p>
+        <p style="color: #d4af37; margin-bottom: 30px; font-size: 1.2em;">لە هەر شوێنێک کێشەت بۆ دروست بوو، چات بکە:</p>
+        
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/share/1DeSy9xefd/?mibextid=wwXIfr" target="_blank" class="social-btn facebook">
+                فەیسبوکی من
+            </a>
+            
+            <a href="https://snapchat.com/t/zwbMATUI" target="_blank" class="social-btn snapchat">
+                سناپی من
+            </a>
+            
+            <a href="https://www.tiktok.com/@ahmadtayb0?_r=1&_t=ZS-92xqhLxvSdd" target="_blank" class="social-btn tiktok">
+                تیک تۆکی من
+            </a>
+            
+            <a href="https://t.me/ahmadtayb0" target="_blank" class="social-btn telegram">
+                تێلێگرامی من
+            </a>
+            
+            <a href="https://wa.me/9647503307665" target="_blank" class="social-btn whatsapp">
+                وەتس ئاپ
+            </a>
+            
+            <a href="viber://chat?number=9647503307665" class="social-btn viber">
+                فایبەر
+            </a>
+        </div>
+        
+        <p style="color: #999; margin-top: 20px; font-size: 1.1em;">© 2025 پەیمانگای وەرزشی بەردەرەش - هەموو مافێک پارێزراوە</p>
+    </div>
+</footer>
+
+<script>
+    // User session management
+    let currentUser = null;
+    let participantCount = parseInt(localStorage.getItem('participantCount')) || 0;
+    let unreadMessages = 0;
+    
+    // Chat messages
+    let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+    // Update participant count
+    function updateParticipantCount() {
+        const countElements = document.querySelectorAll('#participantCount');
+        countElements.forEach(el => {
+            el.textContent = participantCount;
+        });
+        localStorage.setItem('participantCount', participantCount);
+        updateOnlineCounter();
+    }
+    
+    // Update online counter
+    function updateOnlineCounter() {
+        const onlineCount = Math.floor(participantCount * 0.6); // Simulate 60% online
+        document.getElementById('onlineCount').textContent = onlineCount;
+    }
+    
+    // Show welcome banner
+    function showWelcomeBanner() {
+        const banner = document.getElementById('welcomeBanner');
+        if (banner && currentUser) {
+            banner.style.display = 'block';
+            banner.innerHTML = `🎉 بەخێربێیت  بۆ پەیمانگای وەرزشی بەردەرەش 🎉`;
+            
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 5000);
+        }
+    }
+    
+    // Update chat badge
+    function updateChatBadge() {
+        const badge = document.getElementById('chatBadge');
+        if (unreadMessages > 0) {
+            badge.textContent = unreadMessages;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+    
+    // Show new message indicator
+    function showNewMessageIndicator() {
+        const indicator = document.getElementById('newMessageIndicator');
+        indicator.classList.add('show');
+        
+        setTimeout(() => {
+            indicator.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Update chat progress
+    function updateChatProgress() {
+        const messageCount = chatMessages.length;
+        const maxMessages = 100;
+        const percentage = Math.min((messageCount / maxMessages) * 100, 100);
+        
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('messageProgress');
+        
+        if (progressFill) progressFill.style.width = percentage + '%';
+        if (progressText) progressText.textContent = Math.round(percentage) + '%';
+    }
+    
+    // Chat functions
+    function openChatModal() {
+        if (!currentUser) {
+            alert('تکایە سەرەتا خۆت تۆمار بکە!');
+            openRegisterModal();
+            return;
+        }
+        document.getElementById('chatModal').classList.add('active');
+        loadChatMessages();
+        unreadMessages = 0;
+        updateChatBadge();
+        updateChatProgress();
+    }
+    
+    function loadChatMessages() {
+        const messagesContainer = document.getElementById('chatMessages');
+        messagesContainer.innerHTML = '';
+        
+        if (chatMessages.length === 0) {
+            messagesContainer.innerHTML = `
+                <div style="text-align: center; color: #d4af37; padding: 50px; font-size: 1.2em;">
+                    📭 هێشتا هیچ پەیامێک نەنێردراوە<br>
+                    <span style="font-size: 0.9em; opacity: 0.8;">یەکەم کەس بە کە پەیام دەنێرێت!</span>
+                </div>
+            `;
+            return;
+        }
+        
+        chatMessages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message  'received'`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-author"></div>
+                <div class="message-text"></div>
+                <div class="message-time"></div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+        });
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    function sendMessage() {
+        if (!currentUser) {
+            alert('تکایە سەرەتا خۆت تۆمار بکە!');
+            return;
+        }
+        
+        const input = document.getElementById('chatInput');
+        const messageText = input.value.trim();
+        
+        if (!messageText) return;
+        
+        const now = new Date();
+        const time = now.toLocaleTimeString('ku', { hour: '2-digit', minute: '2-digit' });
+        
+        const message = {
+            userId: currentUser.email,
+            author: currentUser.name,
+            text: messageText,
+            time: time,
+            timestamp: now.getTime()
+        };
+        
+        chatMessages.push(message);
+        localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+        
+        input.value = '';
+        loadChatMessages();
+        updateChatProgress();
+        
+        // Simulate notification for other users
+        if (Math.random() > 0.5) {
+            setTimeout(() => {
+                showNewMessageIndicator();
+            }, 2000);
+        }
+    }
+    
+    function handleChatEnter(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    // Load data from localStorage or use defaults
+    let scheduleData = JSON.parse(localStorage.getItem('scheduleData')) || [
+        // شەممە - پشوو
+        { day: 'شەممە', start: '-', end: '-', subject: '🌙 پشوو', teacher: '-', group: 'قۆناغی چوارەم' },
+        
+        // یەکشەممە - 3 وانە
+        { day: 'یەکشەممە', start: '8:30 ن', end: '9:40 ن', subject: 'تۆپی دەست', teacher: 'مامۆستا عومەر', group: 'قۆناغی چوارەم' },
+        { day: 'یەکشەممە', start: '9:55 ن', end: '10:25 ن', subject: 'فێربوونی جولە', teacher: 'مامۆستا عومەر', group: 'قۆناغی چوارەم' },
+        { day: 'یەکشەممە', start: '10:30 ن', end: '11:40 ن', subject: 'تۆپی بالە', teacher: 'مامۆستا یاعقوب', group: 'قۆناغی چوارەم' },
+        
+        // دووشەممە - 4 وانە
+        { day: 'دووشەممە', start: '8:30 ن', end: '9:10 ن', subject: 'فێربوونی جولە', teacher: 'مامۆستا عومەر', group: 'قۆناغی چوارەم' },
+        { day: 'دووشەممە', start: '9:15 ن', end: '9:55 ن', subject: 'ئامار', teacher: 'مامۆستا ئالا', group: 'قۆناغی چوارەم' },
+        { day: 'دووشەممە', start: '10:00 ن', end: '10:40 ن', subject: 'رێگای وانە', teacher: 'مامۆستا عەلی', group: 'قۆناغی چوارەم' },
+        { day: 'دووشەممە', start: '10:45 ن', end: '11:25 ن', subject: 'زانستی مەشق', teacher: 'مامۆستا سیروان', group: 'قۆناغی چوارەم' },
+        
+        // سێشەممە - 4 وانە
+        { day: 'سێشەممە', start: '8:30 ن', end: '9:10 ن', subject: 'رێگای وانە', teacher: 'مامۆستا عەلی', group: 'قۆناغی چوارەم' },
+        { day: 'سێشەممە', start: '9:15 ن', end: '9:55 ن', subject: 'مەدەنی', teacher: 'مامۆستا سوهیب', group: 'قۆناغی چوارەم' },
+        { day: 'سێشەممە', start: '10:00 ن', end: '10:40 ن', subject: 'پێوانە و هەلسەنگاندن', teacher: 'مامۆستا دلاوەر', group: 'قۆناغی چوارەم' },
+        { day: 'سێشەممە', start: '10:45 ن', end: '11:25 ن', subject: 'کارگێری رێکخستن', teacher: 'مامۆستا کارگێری', group: 'قۆناغی چوارەم' },
+        
+        // چوارشەممە - 3 وانە
+        { day: 'چوارشەممە', start: '8:30 ن', end: '9:40 ن', subject: 'گۆرەپان', teacher: 'مامۆستا سیروان', group: 'قۆناغی چوارەم' },
+        { day: 'چوارشەممە', start: '9:45 ن', end: '10:25 ن', subject: 'کارگێری رێکخستن', teacher: 'مامۆستا کارگێری', group: 'قۆناغی چوارەم' },
+        { day: 'چوارشەممە', start: '10:30 ن', end: '11:10 ن', subject: 'پێوانە و هەلسەنگاندن', teacher: 'مامۆستا دلاوەر', group: 'قۆناغی چوارەم' },
+        
+        // پێنجشەممە - 4 وانە
+        { day: 'پێنجشەممە', start: '8:30 ن', end: '9:10 ن', subject: 'مەدەنی', teacher: 'مامۆستا سوهیب', group: 'قۆناغی چوارەم' },
+        { day: 'پێنجشەممە', start: '9:15 ن', end: '9:55 ن', subject: 'ئامار', teacher: 'مامۆستا ئالا', group: 'قۆناغی چوارەم' },
+        { day: 'پێنجشەممە', start: '10:00 ن', end: '10:40 ن', subject: 'زانستی مەشق', teacher: 'مامۆستا سیروان', group: 'قۆناغی چوارەم' },
+        { day: 'پێنجشەممە', start: '10:45 ن', end: '11:55 ن', subject: 'تۆپی باسکە', teacher: 'مامۆستا یاعقوب', group: 'قۆناغی چوارەم' }
+    ];
+
+    // Group data
+    let groupsData = JSON.parse(localStorage.getItem('groupsData')) || {
+        1: [
+            { id: 1, name: 'ئاریان رەشید', representative: false },
+            { id: 2, name: 'ئومید عەلی', representative: false },
+            { id: 3, name: 'ئیسرا', representative: false },
+            { id: 4, name: 'ئیسماعیل محەمەد', representative: false },
+            { id: 5, name: 'ئەحمەد سباح', representative: false },
+            { id: 6, name: 'ئەحمەد طارق', representative: false },
+            { id: 7, name: 'ئەحمەد طیب', representative: false },
+            { id: 8, name: 'ئەحمەد مسعود', representative: false },
+            { id: 9, name: 'ئەحمەد میکائیل', representative: false },
+            { id: 10, name: 'ئەیاد محەمەد', representative: false },
+            { id: 11, name: 'بکر سدقی', representative: false },
+            { id: 12, name: 'بەختیار', representative: false },
+            { id: 13, name: 'داوود ئەمین', representative: false },
+            { id: 14, name: 'دلین یوسف', representative: false },
+            { id: 15, name: 'دیڤاین شیمال', representative: false },
+            { id: 16, name: 'رەمزی محەمەد', representative: false },
+            { id: 17, name: 'ڕۆژین سدقی', representative: false },
+            { id: 18, name: 'سارا', representative: false },
+            { id: 19, name: 'سامان سەعید', representative: false },
+            { id: 20, name: 'سلێمان نووری', representative: false },
+            { id: 21, name: 'سەعید عەزیز', representative: false },
+            { id: 22, name: 'سفین کەبیر', representative: false },
+            { id: 23, name: 'غوفران محەمەد', representative: false },
+            { id: 24, name: 'فوارد کەمال', representative: false },
+            { id: 25, name: 'لیس', representative: false },
+            { id: 26, name: 'مازن رەشید', representative: false },
+            { id: 27, name: 'مستەفا تاها', representative: false },
+            { id: 28, name: 'مستەفا ئەنوەر', representative: false },
+            { id: 29, name: 'محەمەد غەفوور', representative: false },
+            { id: 30, name: 'محەمەد فاخر', representative: false },
+            { id: 31, name: 'محەمەد یونس', representative: false },
+            { id: 32, name: 'هومەیل موئید', representative: true },
+            { id: 33, name: 'هەژار ئەرشەد', representative: false },
+            { id: 34, name: 'هەژار میکائیل', representative: false },
+            { id: 35, name: 'خلف عەبدوڵڵا', representative: false },
+            { id: 36, name: 'عومەر موسا', representative: false },
+            { id: 37, name: 'عومەر هاشم', representative: false },
+            { id: 38, name: 'عەلی', representative: false },
+            { id: 39, name: 'عەلی جیهاد', representative: false },
+            { id: 40, name: 'یاسر هارون', representative: false }
+        ]
+    };
+
+    let currentGroupId = null;
+
+    // Save data to localStorage
+    function saveScheduleData() {
+        localStorage.setItem('scheduleData', JSON.stringify(scheduleData));
+    }
+
+    function saveGroupsData() {
+        localStorage.setItem('groupsData', JSON.stringify(groupsData));
+    }
+
+    // Load schedule table
+    function loadScheduleTable() {
+        const tbody = document.getElementById('scheduleBody');
+        tbody.innerHTML = '';
+        
+        scheduleData.forEach((item, index) => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            `;
+            
+            if (currentUser && currentUser.type === 'teacher') {
+                const actionsCell = row.insertCell(-1);
+                actionsCell.innerHTML = `
+                    <button class="edit-btn" onclick="editScheduleRow()">✏️ دەستکاری</button>
+                    <button class="delete-btn" onclick="deleteScheduleRow()">🗑️ سڕینەوە</button>
+                `;
+            }
+        });
+    }
+
+    // Modal functions
+    function openRegisterModal() {
+        document.getElementById('registerModal').classList.add('active');
+    }
+
+    function openScheduleModal() {
+        document.getElementById('scheduleModal').classList.add('active');
+        loadScheduleTable();
+        updateParticipantCount();
+        updateTeacherControls();
+    }
+
+    function openGroupsModal() {
+        document.getElementById('groupsModal').classList.add('active');
+    }
+
+    function openTeachersModal() {
+        document.getElementById('teachersModal').classList.add('active');
+    }
+
+    function openNotesModal() {
+        document.getElementById('notesModal').classList.add('active');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('active');
+        }
+    }
+
+    // Registration handler
+    function handleRegister(event) {
+        event.preventDefault();
+        
+        const userType = document.getElementById('userType').value;
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        
+        currentUser = {
+            type: userType,
+            name: fullName,
+            email: email,
+            phone: phone
+        };
+        
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        
+        // Increase participant count
+        participantCount++;
+        updateParticipantCount();
+        
+        alert(`سوپاس ! تۆمارکردنەکەت سەرکەوتوو بوو وەک  'خوێندکار'`);
+        closeModal('registerModal');
+        updateTeacherControls();
+        showUserBadge();
+        showWelcomeBanner();
+    }
+
+    // Check if user is logged in
+    function checkLogin() {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            updateTeacherControls();
+            showUserBadge();
+        }
+    }
+
+    // Show user badge
+    function showUserBadge() {
+        if (currentUser) {
+            const badge = document.createElement('div');
+            badge.className = `user-role-badge  'student-badge'`;
+            badge.textContent = currentUser.type === 'teacher' ? '👨‍🏫 مامۆستا: ' + currentUser.name : '👨‍🎓 خوێندکار: ' + currentUser.name;
+            badge.style.position = 'fixed';
+            badge.style.top = '100px';
+            badge.style.left = '20px';
+            badge.style.zIndex = '1001';
+            
+            const existingBadge = document.querySelector('.user-role-badge');
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+            
+            document.body.appendChild(badge);
+        }
+    }
+
+    // Update teacher controls visibility
+    function updateTeacherControls() {
+        const isTeacher = currentUser && currentUser.type === 'teacher';
+        
+        // Schedule controls
+        const teacherControls = document.getElementById('teacherControls');
+        const scheduleActions = document.getElementById('scheduleActions');
+        
+        if (teacherControls) teacherControls.style.display = isTeacher ? 'block' : 'none';
+        if (scheduleActions) scheduleActions.style.display = isTeacher ? 'table-cell' : 'none';
+        
+        // Group controls
+        const groupTeacherControls = document.getElementById('groupTeacherControls');
+        const groupActions = document.getElementById('groupActions');
+        
+        if (groupTeacherControls) groupTeacherControls.style.display = isTeacher ? 'block' : 'none';
+        if (groupActions) groupActions.style.display = isTeacher ? 'table-cell' : 'none';
+    }
+
+    // Add new schedule row
+    function addScheduleRow() {
+        const day = prompt('ڕۆژ:');
+        const startTime = prompt('کاتی دەستپێکردن:');
+        const endTime = prompt('کاتی کۆتایی:');
+        const subject = prompt('وانە:');
+        const teacher = prompt('مامۆستا:');
+        const groupNum = prompt('گروپ (1-5):');
+        
+        if (day && startTime && endTime && subject && teacher && groupNum) {
+            scheduleData.push({
+                day: day,
+                start: startTime,
+                end: endTime,
+                subject: subject,
+                teacher: teacher,
+                group: `گروپی `
+            });
+            
+            saveScheduleData();
+            loadScheduleTable();
+            alert('وانەکە زیاد کرا! ✅ دەستکاریەکە هەڵگیرا.');
+        }
+    }
+
+    // Edit schedule row
+    function editScheduleRow(index) {
+        const item = scheduleData[index];
+        
+        const day = prompt('ڕۆژ:', item.day);
+        const startTime = prompt('کاتی دەستپێکردن:', item.start);
+        const endTime = prompt('کاتی کۆتایی:', item.end);
+        const subject = prompt('وانە:', item.subject);
+        const teacher = prompt('مامۆستا:', item.teacher);
+        const group = prompt('گروپ:', item.group);
+        
+        if (day && startTime && endTime && subject && teacher && group) {
+            scheduleData[index] = {
+                day: day,
+                start: startTime,
+                end: endTime,
+                subject: subject,
+                teacher: teacher,
+                group: group
+            };
+            
+            saveScheduleData();
+            loadScheduleTable();
+            alert('گۆڕانکاری سەرکەوتوو بوو! ✅ دەستکاریەکە هەڵگیرا.');
+        }
+    }
+
+    // Delete schedule row
+    function deleteScheduleRow(index) {
+        if (confirm('دڵنیایت دەتەوێت ئەم وانەیە بسڕیتەوە؟')) {
+            scheduleData.splice(index, 1);
+            saveScheduleData();
+            loadScheduleTable();
+            alert('وانەکە سڕایەوە! ✅ دەستکاریەکە هەڵگیرا.');
+        }
+    }
+
+    // Show group details
+    function showGroupDetails(groupId) {
+        currentGroupId = groupId;
+        const groupData = groupsData[groupId] || [];
+        
+        document.getElementById('groupDetailTitle').textContent = 'قۆناغی چوارەم';
+        
+        const tbody = document.getElementById('groupDetailsBody');
+        tbody.innerHTML = '';
+        
+        groupData.forEach((student, index) => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td></td>
+                <td></td>
+                <td> ''</td>
+            `;
+            
+            if (currentUser && currentUser.type === 'teacher') {
+                const actionsCell = row.insertCell(-1);
+                actionsCell.innerHTML = `
+                    <button class="edit-btn" onclick="editGroupMember(${groupId}, ${student.id})">✏️</button>
+                    <button class="delete-btn" onclick="deleteGroupMember(${groupId}, ${student.id})">🗑️</button>
+                `;
+            }
+        });
+        
+        updateTeacherControls();
+        closeModal('groupsModal');
+        document.getElementById('groupDetailsModal').classList.add('active');
+    }
+
+    // Add group member
+    function addGroupMember() {
+        const name = prompt('ناوی قوتابی:');
+        if (!name) return;
+        
+        const isRep = confirm('ئایا نوێنەری گروپە؟');
+        
+        const newStudent = {
+            id: Date.now(),
+            name: name,
+            representative: isRep
+        };
+        
+        if (!groupsData[currentGroupId]) {
+            groupsData[currentGroupId] = [];
+        }
+        
+        groupsData[currentGroupId].push(newStudent);
+        saveGroupsData();
+        showGroupDetails(currentGroupId);
+        alert('قوتابی زیاد کرا! ✅ دەستکاریەکە هەڵگیرا.');
+    }
+
+    // Edit group member
+    function editGroupMember(groupId, studentId) {
+        const student = groupsData[groupId].find(s => s.id === studentId);
+        if (student) {
+            const newName = prompt('ناوی نوێ:', student.name);
+            if (!newName) return;
+            
+            const isRep = confirm('ئایا نوێنەری گروپە؟');
+            
+            student.name = newName;
+            student.representative = isRep;
+            
+            saveGroupsData();
+            showGroupDetails(groupId);
+            alert('گۆڕانکاری سەرکەوتوو بوو! ✅ دەستکاریەکە هەڵگیرا.');
+        }
+    }
+
+    // Delete group member
+    function deleteGroupMember(groupId, studentId) {
+        if (confirm('دڵنیایت دەتەوێت ئەم قوتابیە بسڕیتەوە؟')) {
+            groupsData[groupId] = groupsData[groupId].filter(s => s.id !== studentId);
+            saveGroupsData();
+            showGroupDetails(groupId);
+            alert('قوتابی سڕایەوە! ✅ دەستکاریەکە هەڵگیرا.');
+        }
+    }
+
+    // Initialize on page load
+    window.onload = function() {
+        checkLogin();
+        updateOnlineCounter();
+        updateChatBadge();
+        
+        // Simulate new messages periodically
+        setInterval(() => {
+            if (currentUser && Math.random() > 0.9) {
+                unreadMessages++;
+                updateChatBadge();
+            }
+        }, 30000); // Every 30 seconds
+    }
+</script>
+```
+
+</body>
+</html>
